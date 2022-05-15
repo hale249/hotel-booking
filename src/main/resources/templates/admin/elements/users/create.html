@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/app.html}"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <title>Tạo mới người dùng</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="card">
+        <form th:action="@{/admin/users/create}" th:object="${user}" method="post" class="form" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                <h4 class="card-title mb-0">
+                    Nguời dùng
+                    <small class="text-muted">Tạo mới</small>
+                </h4>
+                <hr>
+                <div class="form-group row">
+                        <label class="col-md-2 form-control-label" for="fistName">Fist name</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="fistName" th:field="*{fistName}"
+                                   placeholder="Nhập tên..."
+                                   maxlength="191" required="">
+                            <p class="alert alert-danger" th:if="${#fields.hasErrors('fistName')}"
+                               th:errors="*{fistName}"></p>
+                        </div><!--col-->
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="lastName">@lang('labels.pages.backend.category.form.description')</label>
+
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" />
+
+                    </div><!--col-->
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col">
+                        <a th:href="@{/admin/users}" class="btn btn-danger btn-sm">Trở lại</a>
+                    </div>
+
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Lưu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

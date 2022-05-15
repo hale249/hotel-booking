@@ -1,7 +1,7 @@
 package com.hotel.booking.services;
 
-import com.hotel.booking.models.User;
-import com.hotel.booking.models.payload.RegistrationRequest;
+import com.hotel.booking.entities.User;
+import com.hotel.booking.entities.payload.RegistrationRequest;
 import com.hotel.booking.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -40,9 +39,6 @@ public class UserService {
         newUser.setUsername(registerRequest.getUsername());
         newUser.setFirstName(registerRequest.getFirstName());
         newUser.setLastName(registerRequest.getLastName());
-        newUser.setCreatedAt(Instant.now());
-        newUser.setUpdatedAt(Instant.now());
-
         return newUser;
     }
 

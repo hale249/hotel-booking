@@ -10,4 +10,14 @@ public class HomeController {
     public String home(Model model) {
         return "frontend/index";
     }
+
+    @GetMapping(value="/blog")
+    public String blog(Model model) {
+        return "frontend/index";
+    }
+
+    @GetMapping(value="/zoom")
+    public String zoom(Model model) {
+        return "frontend/index";
+    }
 }
