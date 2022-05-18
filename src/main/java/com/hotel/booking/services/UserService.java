@@ -14,44 +14,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
-public class UserService {
-    private final UserRepository userRepository;
+public interface UserService {
+    public Optional<User> findByUsername(String username);
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    public Boolean existsByEmail(String email);
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+    public Boolean existsByUsername(String username);
 
-    public Boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
+    public User createUser(User user);
 
-    public Boolean existsByUsername(String username) {
-        return userRepository.existsByUsername(username);
-    }
+    public Page<User> getUsers(Pageable page);
 
-//    public User createUser(RegistrationRequest registerRequest) {
-//        User newUser = new User();
-//        newUser.setEmail(registerRequest.getEmail());
-//        newUser.setPassword(new BCryptPasswordEncoder().encode(registerRequest.getPassword()));
-//        newUser.setUsername(registerRequest.getUsername());
-//        newUser.setFirstName(registerRequest.getFirstName());
-//        newUser.setLastName(registerRequest.getLastName());
-//        return newUser;
-//    }
+    public Paged<User> listUsers(int current, int pageSize, String searchText);
 
-    public Page<User> getUsers(Pageable page) {
-        return userRepository.findAll(page);
-    }
-
-    public Paged<User> listUsers(int current, int pageSize, String searchText) {
-        PageRequest request = PageRequest.of(current - 1, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-        Page<User> userPage = userRepository.listUsers(searchText, request);
-        return new Paged<>(userPage, Paging.of(userPage.getTotalPages(), current, pageSize));
-    }
+    public void deleteUserById(Long userId);
 }

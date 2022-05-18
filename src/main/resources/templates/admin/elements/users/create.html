@@ -10,35 +10,55 @@
 <body>
 <div layout:fragment="content">
     <div class="card">
-        <form th:action="@{/admin/users/create}" th:object="${user}" method="post" class="form" enctype="multipart/form-data">
-            @csrf
+        <form th:action="@{/admin/users/create}" th:object="${user}" method="post" class="form"
+              enctype="multipart/form-data">
             <div class="card-body">
                 <h4 class="card-title mb-0">
                     Nguời dùng
                     <small class="text-muted">Tạo mới</small>
                 </h4>
                 <hr>
-                <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="fistName">Fist name</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" id="fistName" th:field="*{fistName}"
-                                   placeholder="Nhập tên..."
-                                   maxlength="191" required="">
-                            <p class="alert alert-danger" th:if="${#fields.hasErrors('fistName')}"
-                               th:errors="*{fistName}"></p>
-                        </div><!--col-->
-                </div>
 
                 <div class="form-group row">
-                    <label class="col-md-2 form-control-label" for="lastName">@lang('labels.pages.backend.category.form.description')</label>
+                    <label class="col-md-2 form-control-label" for="name">Họ</label>
 
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
-                        <p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" />
-
-                    </div><!--col-->
+                        <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nhập tên...">
+                    </div>
                 </div>
 
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="email">Email</label>
+
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="email" th:cssErrorClass="was-validated" th:field="*{email}" placeholder="Nhập email...">
+                        <p class="text-danger" th:if="${#fields.hasErrors('email')}"
+                           th:errors="*{email}"></p>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="username">Tài khoản</label>
+
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="username" th:cssErrorClass="was-validated" th:field="*{username}" placeholder="Nhập username...">
+                        <p class="text-danger" th:if="${#fields.hasErrors('username')}"
+                           th:errors="*{username}"></p>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="password">Mật khẩu</label>
+
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="password" th:cssErrorClass="was-validated" th:field="*{password}" placeholder="Nhập mật khẩu...">
+                        <p class="text-danger" th:if="${#fields.hasErrors('password')}"
+                           th:errors="*{password}"></p>
+
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="row">

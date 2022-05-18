@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByUsername(String username);
 
-    @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%" + " OR u.lastName LIKE %?1%" + " OR u.email LIKE %?1%")
-    public Page<User> listUsers(String searchText, Pageable pageable);
+    @Query("SELECT u FROM User u WHERE u.name LIKE %?1%" + " OR u.username LIKE %?1%" + " OR u.email LIKE %?1%")
+    Page<User> listUsers(String searchText, Pageable pageable);
 }

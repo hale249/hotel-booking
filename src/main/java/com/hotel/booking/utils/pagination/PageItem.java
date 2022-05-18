@@ -16,5 +16,4 @@ public class PageItem {
     private int index;
 
     private boolean active;
-
 }

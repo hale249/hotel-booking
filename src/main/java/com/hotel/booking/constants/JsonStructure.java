@@ -14,5 +14,8 @@ public class JsonStructure {
         public static final String KEY_ITEM_PER_PAGE = "itemsPerPage";
         public static final String KEY_TOTAL = "total";
         public static final String KEY_ITEMS = "items";
+        public static final String CURRENT = "1";
+        public static final String  PAGE_SIZE = "10";
+
     }
 }

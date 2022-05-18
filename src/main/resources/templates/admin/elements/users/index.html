@@ -23,13 +23,21 @@
                 </div>
             </div>
 
+            <form th:action="@{/admin/users}" method="GET" class="form-inline mt-2">
+                <div class="form-group">
+                    <input type="text" name="searchText" id="searchText" class="form-control" th:value="${searchText}" placeholder="Nhập tên tìm kiếm...">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-same-select ml-2">Tìm kiếm</button>
+            </form>
+
             <div class="mt-4">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <td><strong>STT</strong></td>
-                            <td><strong>Họ và tên</strong></td>
+                            <td><strong>Tên</strong></td>
                             <td><strong>Username</strong></td>
                             <td><strong>Email</strong></td>
                             <td><strong>Ngày sinh</strong></td>
@@ -40,42 +48,62 @@
                         <tbody>
                         <tr th:each="user : ${users.page}">
                             <td th:text="${user.id}"></td>
-                            <td th:text="${user.firstName  + user.lastName}"></td>
+                            <td th:text="${user.name}"></td>
                             <td th:text="${user.username}"></td>
                             <td th:text="${user.email}"></td>
-                            <td>Ha le</td>
-                            <td>adadadf</td>
-                            <td>adadadf</td>
+                            <td th:text="${#dates.format(user.createdAt, 'dd-MM-yyyy')}"></td>
+                            <td>
+                                <span th:if="${user.active}" class="badge badge-success">
+                                        Hoạt động
+                                </span>
+                                <span th:unless="${user.active}" class="badge badge-success">Tạm khóa</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Hành động">
+                                    <a th:href="@{/admin/users/{id}(id=${user.id})}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a th:href="@{/admin/user/{id}(id=${user.id})}"
+                                       class="btn btn-danger btn-sm"
+                                       onClick="if (!(confirm('Bạn có chắc chắn muốn xóa nhân viên này không?'))) return false">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="text-right">
-                    <nav aria-label="Page navigation example" class="paging">
-                        <ul class="pagination" th:if="${users.page.totalPages > 1}">
-                            <li class="page-item"
-                                th:classappend="${!users.paging.isPrevEnabled()? 'disabled' : ''}">
-                                <a class="page-link"
-                                   th:href="@{'/?current=' + ${users.paging.current - 1}}"
-                                   tabindex="-1">Previous</a>
-                            </li>
-                            <th:block th:each="item : ${users.paging.getItems()}">
+
+                <div class="row">
+                    <div class="col">
+                    </div>
+
+                    <div class="col text-right">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination text-right" th:if="${users.page.totalPages > 0}">
                                 <li class="page-item"
-                                    th:classappend="${item.index == users.paging.current? 'active' : ''}"
-                                    th:if="${item.pageItemType.name() == 'PAGE'}"><a
-                                        class="page-link" th:href="@{'/?current=' + ${item.index}}"
-                                        th:text="${item.index}"></a></li>
-                                <li class="page-item disabled"
-                                    th:if="${item.pageItemType.name() == 'DOTS'}"><a
-                                        class="page-link" href="#">...</a></li>
-                            </th:block>
-                            <li class="page-item"
-                                th:classappend="${!users.paging.isNextEnabled()? 'disabled' : ''}">
-                                <a class="page-link"
-                                   th:href="@{'/?current=' + ${users.paging.current + 1}}">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                                    th:classappend="${!users.paging.isPrevEnabled()? 'disabled' : ''}">
+                                    <a class="page-link"
+                                       th:href="@{'admin/users/?current=' + ${users.paging.current - 1}}"
+                                       tabindex="-1">Trước</a>
+                                </li>
+                                <th:block th:each="item : ${users.paging.getItems()}">
+                                    <li class="page-item"
+                                        th:classappend="${item.index == users.paging.current? 'active' : ''}"
+                                        th:if="${item.pageItemType.name() == 'PAGE'}"><a
+                                            class="page-link" th:href="@{'admin/users/?current=' + ${item.index}}"
+                                            th:text="${item.index}"></a></li>
+                                    <li class="page-item disabled"
+                                        th:if="${item.pageItemType.name() == 'DOTS'}"><a
+                                            class="page-link" href="#">...</a></li>
+                                </th:block>
+                                <li class="page-item"
+                                    th:classappend="${!users.paging.isNextEnabled()? 'disabled' : ''}">
+                                    <a class="page-link"
+                                       th:href="@{'admin/users/?current=' + ${users.paging.current + 1}}">Tiếp</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>

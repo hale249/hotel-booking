@@ -9,9 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,28 +18,25 @@ import java.sql.Timestamp;
 @Getter
 @Entity
 @Table(name = DBConstants.Documents.USERS)
-public class User implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
-    @Column(name = "first_name", length = 128)
-    private String firstName;
-
-    @Column(name = "last_name", length = 128)
-    private String lastName;
+    @Column(name = "name", length = 128)
+    private String name;
 
     private String address;
 
     @NotNull
+    @NotBlank
     @Column(length = 128)
     private String username;
 
     @NotNull
+    @NotBlank
     @Column(unique = true, length = 128)
     private String email;
 
     @NotNull
+    @NotBlank
     private String password;
 
     @Column(name = "is_active", columnDefinition = "tinyint(1) default 1")
@@ -50,10 +46,4 @@ public class User implements Serializable {
     private String avatar;
 
     private Long birthday;
-
-    @CreationTimestamp
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    private Timestamp updatedAt;
 }
