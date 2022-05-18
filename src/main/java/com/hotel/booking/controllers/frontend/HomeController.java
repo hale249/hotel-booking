@@ -11,13 +11,18 @@ public class HomeController {
         return "frontend/elements/home";
     }
 
-    @GetMapping(value="/blog")
-    public String blog(Model model) {
-        return "frontend/index";
+    @GetMapping(value="/404")
+    public String notFound(Model model) {
+        return "atoli/elements/404";
     }
 
-    @GetMapping(value="/zoom")
-    public String zoom(Model model) {
-        return "frontend/index";
+    @GetMapping(value="/about")
+    public String about(Model model) {
+        return "atoli/elements/about";
+    }
+
+    @GetMapping(value="/contact")
+    public String contact(Model model) {
+        return "atoli/elements/contact";
     }
 }
