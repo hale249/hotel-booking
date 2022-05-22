@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BookingController {
     @GetMapping(value = "/booking")
     public String pageBooking() {
-        return "frontend/elements/booking";
+        return "atoli/elements/book";
     }
 }

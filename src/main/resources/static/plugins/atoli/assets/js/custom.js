@@ -361,15 +361,15 @@
     jQuery(".preloader").fadeOut(500);
   });
 
-  // Buy Now Btn
-  $("body").append(
-    "<a href='https://themeforest.net/checkout/from_item/29263540?license=regular&support=bundle_6month&_ga=2.110036101.1220166448.1645934757-918236941.1644836235' target='_blank' class='buy-now-btn'><img src='assets/img/envato.png' alt='envato'/>Buy Now</a>"
-  );
+  // // Buy Now Btn
+  // $("body").append(
+  //   "<a href='https://themeforest.net/checkout/from_item/29263540?license=regular&support=bundle_6month&_ga=2.110036101.1220166448.1645934757-918236941.1644836235' target='_blank' class='buy-now-btn'><img src='assets/img/envato.png' alt='envato'/>Buy Now</a>"
+  // );
 
   // Switch Btn
-  $("body").append(
-    "<div class='switch-box'><label id='switch' class='switch'><input type='checkbox' onchange='toggleTheme()' id='slider'><span class='slider round'></span></label></div>"
-  );
+  // $("body").append(
+  //   "<div class='switch-box'><label id='switch' class='switch'><input type='checkbox' onchange='toggleTheme()' id='slider'><span class='slider round'></span></label></div>"
+  // );
 })(jQuery);
 
 // function to set a given theme/color-scheme

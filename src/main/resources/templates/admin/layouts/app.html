@@ -22,6 +22,12 @@
     <link th:href="@{/plugins/admin/css/sb-admin-2.min.css}" rel="stylesheet">
     <th:block layout:fragment="css" />
 
+    <style>
+        .was-validated {
+            border-color: #dc3545;
+        }
+    </style>
+
 <!--    <style th:replace="${css}"></style>-->
 </head>
 
@@ -128,6 +134,18 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                <div class="alert alert-success" role="alert" th:if="${success}">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div  th:text="${success}"></div>
+                </div>
+                <div class="alert alert-danger" role="alert" th:if="${error}">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div  th:text="${error}"></div>
+                </div>
                 <div layout:fragment="content">
                     <div>Content</div>
                 </div>

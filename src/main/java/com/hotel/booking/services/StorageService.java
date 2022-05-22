@@ -1,10 +1,13 @@
 package com.hotel.booking.services;
 
-import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.web.multipart.MultipartFile;
 
-@ConfigurationProperties("storage")
-@Data
-public class StorageService {
-    private String location;
+import java.nio.file.Path;
+import java.util.stream.Stream;
+
+public interface StorageService {
+    public String storeFile(MultipartFile file);
+    public Stream<Path> loadAll(); //load all file inside a folder
+    public byte[] readFileContent(String fileName);
+    public void deleteAllFiles();
 }

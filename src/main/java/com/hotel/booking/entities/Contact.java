@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -16,32 +18,27 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Entity
 @Where(clause="deleted=0")
-@Table(name = DBConstants.Documents.USERS)
-public class User extends BaseEntity {
+@Table(name = DBConstants.Documents.COMMENTS)
+public class Contact extends BaseEntity {
 
     @Column(name = "name", length = 128)
     private String name;
 
-    private String address;
-
     @NotNull
     @Column(length = 128)
-    private String username;
-
-    @NotNull
-    @Column(unique = true, length = 128)
     private String email;
 
     @NotNull
-    private String password;
+    @Column(length = 128)
+    private String phoneNumber;
 
-    @Column(name = "is_active", columnDefinition = "boolean default false")
-    private Boolean active;
+    @NotNull
+    @Column(length = 255)
+    private String subject;
 
+    @NotNull
     @Column(columnDefinition = "text")
-    private String avatar;
-
-    private Long birthday;
+    private String message;
 
     @Column(name = "deleted", columnDefinition = "boolean default false")
     private boolean deleted = Boolean.FALSE;

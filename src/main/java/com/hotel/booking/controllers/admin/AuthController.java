@@ -10,4 +10,10 @@ public class AuthController {
     public String login(Model model) {
         return "/admin/elements/auth/login";
     }
+
+    @GetMapping("/admin/logout")
+    public String logout(Model model) {
+        return "/admin/elements/auth/login";
+    }
+
 }

@@ -44,13 +44,15 @@ public class MailConfig {
     private String mailSmtpStartTls;
 
 
-//    @Bean
-//    @Primary
-//    public FreeMarkerConfigurationFactoryBean getFreeMarkerConfiguration() {
-//        FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
-//        bean.setTemplateLoaderPath("/templates/mails/");
-//        return bean;
-//    }
+/*
+    @Bean
+    @Primary
+    public FreeMarkerConfigurationFactoryBean getFreeMarkerConfiguration() {
+        FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
+        bean.setTemplateLoaderPath("/templates/mails/");
+        return bean;
+    }
+*/
 
     @Bean
     public JavaMailSender getMailSender() {

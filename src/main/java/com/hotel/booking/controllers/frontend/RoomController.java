@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RoomController {
 
-    @GetMapping(value = "/room")
+    @GetMapping(value = "/rooms")
     public String room() {
         return "atoli/elements/room";
     }
 
-    @GetMapping(value = "/room/{id}")
+    @GetMapping(value = "/rooms/{id}")
     public String roomDetail() {
         return "atoli/elements/room-details";
     }
