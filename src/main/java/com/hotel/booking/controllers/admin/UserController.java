@@ -22,7 +22,9 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping(value = "")
-    public String listUsers(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current, @RequestParam(value = "pageSize", required = false, defaultValue = JsonStructure.Pagination.PAGE_SIZE) int pageSize, @RequestParam(value = "searchText", required = false, defaultValue = "") String searchText, Model model) {
+    public String index(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current,
+                        @RequestParam(value = "pageSize", required = false, defaultValue = JsonStructure.Pagination.PAGE_SIZE) int pageSize,
+                        @RequestParam(value = "searchText", required = false, defaultValue = "") String searchText, Model model) {
 
         model.addAttribute("searchText", searchText);
         model.addAttribute("users", userService.listUsers(current, pageSize, searchText));
@@ -31,13 +33,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/create")
-    public String showPageCreateUser(Model model) {
+    public String create(Model model) {
         model.addAttribute("user", new User());
         return "admin/elements/users/create";
     }
 
     @PostMapping(value = "/create")
-    public String createUser(@Valid @ModelAttribute("user") CreateUserRequest user, BindingResult result,
+    public String store(@Valid @ModelAttribute("user") CreateUserRequest user, BindingResult result,
                              RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
@@ -56,7 +58,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public String showPageUpdateUser(@PathVariable("id") long id, Model model) {
+    public String edit(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         if (user == null) {
             return "admin/elements/errors/404";
@@ -67,7 +69,7 @@ public class UserController {
     }
 
     @PostMapping("{id}")
-    public String updateStudent(@PathVariable("id") long id, @Valid @ModelAttribute("user") UpdateUserRequest user,
+    public String update(@PathVariable("id") long id, @Valid @ModelAttribute("user") UpdateUserRequest user,
                                 BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
@@ -87,7 +89,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String deleteUser(@PathVariable Long id,  RedirectAttributes redirectAttributes) {
+    public String destroy(@PathVariable Long id,  RedirectAttributes redirectAttributes) {
         User user = userService.findById(id);
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");

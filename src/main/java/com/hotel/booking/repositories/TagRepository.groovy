@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface TagRepository extends JpaRepository<Tag, Long> {
     @Modifying
-    @Query("update User u set u.deleted=true where u.id = ?1")
+    @Query("update Tag t set t.deleted=true where t.id = ?1")
     void deleteById(Long id);
 }

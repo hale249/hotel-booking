@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface CommentRepository extends JpaRepository<Comment, Long> {
     @Modifying
-    @Query("update User u set u.deleted=true where u.id = ?1")
+    @Query("update Comment c set c.deleted=true where c.id = ?1")
     void deleteById(Long id);
 }

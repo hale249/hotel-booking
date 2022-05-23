@@ -12,12 +12,4 @@ public class LoginController {
     public String getLoginForm() {
         return "";
     }
-
-    @PostMapping("/login")
-    public String login(
-            @RequestParam("email") String email,
-            @RequestParam("psssword") String password
-    ) {
-        return "";
-    }
 }

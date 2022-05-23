@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface BlogRepository  extends JpaRepository<Blog, Long> {
     @Modifying
-    @Query("update User u set u.deleted=true where u.id = ?1")
+    @Query("update Blog b set b.deleted=true where b.id = ?1")
     void deleteById(Long id);
 }
