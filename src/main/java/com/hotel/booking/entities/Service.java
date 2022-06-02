@@ -18,4 +18,5 @@ import javax.persistence.Table;
 @Where(clause="deleted=0")
 @Table(name = DBConstants.Documents.SERVICES)
 public class Service extends BaseEntity {
+    private String title;
 }

@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-@org.springframework.stereotype.Service
+//@org.springframework.stereotype.Service
 public class ServiceHotelServiceImpl implements ServiceHotelService {
     @Autowired
     ServiceRepository serviceRepository;
@@ -18,8 +18,9 @@ public class ServiceHotelServiceImpl implements ServiceHotelService {
     @Override
     public Paged<Service> getServices(int current, int pageSize, String searchText) {
         PageRequest request = PageRequest.of(current - 1, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-        Page<Service> servicePage = serviceRepository.listServices(searchText, request);
-        return new Paged<>(servicePage, Paging.of(servicePage.getTotalPages(), current, pageSize));
+//        Page<Service> servicePage = serviceRepository.listServices(searchText, request);
+//        return new Paged<>(servicePage, Paging.of(servicePage.getTotalPages(), current, pageSize));
+        return null;
     }
 
     @Override

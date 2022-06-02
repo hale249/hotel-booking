@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public interface RoomRepository extends JpaRepository<Room, Long>{
-    Page<Room> listRooms(String searchText, Pageable pageable);
+//    Page<Room> listRooms(String searchText, Pageable pageable);
 }

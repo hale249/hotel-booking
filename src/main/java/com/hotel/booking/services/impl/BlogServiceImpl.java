@@ -26,14 +26,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog create(BlogRequest request) {
-        Blog newBlog = new Blog();
-        newBlog.setTitle(request.getTitle());
-        newBlog.setSubTitle(request.getSubTitle());
-        newBlog.setImage(request.getImage());
-        newBlog.setDescription(request.getDescription());
-        newBlog.setStatus(request.isStatus());
-        return blogRepository.save(newBlog);
+    public Blog create(Blog blog) {
+        return blogRepository.save(blog);
     }
 
     @Override

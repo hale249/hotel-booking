@@ -9,7 +9,7 @@ import com.hotel.booking.validates.customer.CustomerRequest;
 public interface BlogService {
     Paged<Blog> getBlogs(int current, int pageSize, String searchText);
 
-    Blog create(BlogRequest customer);
+    Blog create(Blog blog);
 
     Blog findById(Long id);
 

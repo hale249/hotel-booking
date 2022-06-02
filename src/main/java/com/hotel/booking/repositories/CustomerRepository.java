@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    @Query("SELECT c FROM Customer c WHERE c.firstName LIKE %?1%" + " OR c.lastName LIKE %?1%"  + " OR c.phoneNumber LIKE %?1%" + " OR  c.email LIKE %?1%")
+    @Query("SELECT c FROM Customer c WHERE c.name LIKE %?1%" + " OR c.phoneNumber LIKE %?1%" + " OR  c.email LIKE %?1%")
     Page<Customer> getCustomers(String searchText, Pageable pageable);
 
     @Modifying

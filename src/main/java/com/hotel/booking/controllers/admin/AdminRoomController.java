@@ -15,12 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-@Controller
-@RequestMapping("admin/room")
+//@Controller
+//@RequestMapping("admin/room")
 public class AdminRoomController {
 
-    @Autowired
-    private RoomService roomService;
+//    @Autowired
+//    private RoomService roomService;
 
 //    @GetMapping(value = "")
 //    public String index(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current,

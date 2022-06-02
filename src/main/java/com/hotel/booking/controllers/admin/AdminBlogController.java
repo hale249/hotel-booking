@@ -4,21 +4,29 @@ import com.hotel.booking.constants.JsonStructure;
 import com.hotel.booking.entities.Blog;
 import com.hotel.booking.entities.User;
 import com.hotel.booking.services.BlogService;
+import com.hotel.booking.services.FilesStorageService;
 import com.hotel.booking.validates.blog.BlogRequest;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
+import org.aspectj.bridge.IMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @Controller
 @RequestMapping("admin/blog")
 public class AdminBlogController {
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private FilesStorageService filesStorageService;
 
     @GetMapping("")
     public String index(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current,
@@ -33,20 +41,32 @@ public class AdminBlogController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("blog", new User());
+        model.addAttribute("blog", new Blog());
         return "admin/elements/blog/create";
     }
 
     @PostMapping("/")
-    public String store(@Valid @ModelAttribute("blog") BlogRequest blog, BindingResult result,
-                        RedirectAttributes redirectAttributes) {
+    public String store(@RequestParam @NotEmpty(message = "Tiêu đề không được để trống") String title,
+                        @RequestParam @NotEmpty(message = "Tiêu đề phụ không được để trông") String subTitle,
+                        @RequestParam @NotEmpty(message = "File không được để trông") MultipartFile image,
+                        @RequestParam @NotEmpty(message = "Nội dung không được để trông") String description,
+                        @RequestParam Boolean status,
+                        BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
             return "admin/elements/blog/create";
         }
 
-        Blog newBlog = blogService.create(blog);
-        if (newBlog == null) {
+        String fileName = "uploads/" + image.getOriginalFilename();
+        Blog newBlog = new Blog();
+        newBlog.setTitle(title);
+        newBlog.setSubTitle(subTitle);
+        newBlog.setDescription(description);
+        newBlog.setImage(fileName);
+        newBlog.setStatus(status);
+
+        Blog saveBlog = blogService.create(newBlog);
+        if (saveBlog == null) {
             redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");
             return "admin/elements/blog/edit";
         }

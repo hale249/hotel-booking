@@ -10,4 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServiceRequest {
+    private String title;
 }
