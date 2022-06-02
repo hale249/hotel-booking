@@ -30,8 +30,8 @@ public class Comment extends BaseEntity {
     @Column(unique = true, length = 128)
     private String message;
 
-    @ManyToOne
-    @JoinColumn(name = "blog_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
 
     @Column(name = "deleted", columnDefinition = "boolean default false")

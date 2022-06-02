@@ -2,6 +2,7 @@ package com.hotel.booking.services.impl;
 
 import com.hotel.booking.entities.User;
 import com.hotel.booking.repositories.UserRepository;
+import com.hotel.booking.services.MyUserDetails;
 import com.hotel.booking.services.UserService;
 import com.hotel.booking.utils.pagination.Paged;
 import com.hotel.booking.utils.pagination.Paging;
@@ -14,14 +15,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
@@ -31,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(CreateUserRequest user) {
         User newUser = new User();
-        newUser.setActive(true);
+        newUser.setEnabled(true);
         newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -67,15 +71,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        User user = userRepository.getUserByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
+            throw new UsernameNotFoundException("Could not find user");
         }
-        HashSet<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        authorities.add(new SimpleGrantedAuthority("USER"));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                (new BCryptPasswordEncoder().encode(user.getPassword())), authorities);
+
+        return new MyUserDetails(user);
     }
 }

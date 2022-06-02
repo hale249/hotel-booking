@@ -19,11 +19,6 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedBy
-    @Column(name = "created_by", length = 50, updatable = false)
-    @JsonIgnore
-    private String createdBy;
-
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     @JsonIgnore
@@ -40,14 +35,6 @@ public abstract class BaseEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
     }
 
     public Instant getCreatedAt() {

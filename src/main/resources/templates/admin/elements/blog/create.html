@@ -5,16 +5,16 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
-    <title>Tạo mới người dùng</title>
+    <title>Tạo mới bài viết</title>
 </head>
 <body>
 <div layout:fragment="content">
     <div class="card">
-        <form th:action="@{/admin/users/create}" th:object="${user}" method="post" class="form"
+        <form th:action="@{/admin/blog/create}" th:object="${blog}" method="post" class="form"
               enctype="multipart/form-data">
             <div class="card-body">
                 <h4 class="card-title mb-0">
-                    Nguời dùng
+                    Bài viết
                     <small class="text-muted">Tạo mới</small>
                 </h4>
                 <hr>

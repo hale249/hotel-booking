@@ -5,30 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
+@Where(clause="deleted=0")
 @Table(name = DBConstants.Documents.CUSTOMERS)
-public class Customer implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Customer extends BaseEntity{
+    @Column(name = "name", length = 128)
+    private String name;
 
-    @Column(name = "first_name", length = 128)
-    private String firstName;
-
-    @Column(name = "last_name", length = 128)
-    private String lastName;
+    @Column(name = "id_card")
+    private String idCard;
 
     @NotNull
     @Column(length = 50, unique = true)
@@ -37,11 +31,6 @@ public class Customer implements Serializable {
     @NotNull
     @Column(name = "phone_number", length = 30, unique = true)
     private String phoneNumber;
-
-    @Column(length = 128)
-    private String username;
-
-    private String password;
 
     @Column(name = "total_price", columnDefinition = "default 0")
     private Double totalPrice;
@@ -52,9 +41,6 @@ public class Customer implements Serializable {
     @Column(columnDefinition = "text")
     private String avatar;
 
-    @CreationTimestamp
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    private Timestamp updatedAt;
+    @Column(name = "deleted", columnDefinition = "boolean default false")
+    private boolean deleted = Boolean.FALSE;
 }

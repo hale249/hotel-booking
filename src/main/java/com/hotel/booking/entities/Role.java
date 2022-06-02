@@ -5,17 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
-@Where(clause="deleted=0")
-@Table(name = DBConstants.Documents.SERVICES)
-public class Service extends BaseEntity {
+@Table(name = DBConstants.Documents.ROLE)
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
 }

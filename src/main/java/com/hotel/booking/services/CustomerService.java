@@ -1,28 +1,19 @@
 package com.hotel.booking.services;
 
+import com.hotel.booking.entities.Blog;
 import com.hotel.booking.entities.Customer;
-import com.hotel.booking.repositories.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hotel.booking.utils.pagination.Paged;
+import com.hotel.booking.validates.customer.CustomerRequest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+public interface CustomerService {
+    Paged<Customer> getCustomers(int current, int pageSize, String searchText);
 
-@Service
-public class CustomerService {
-    private final CustomerRepository customerRepository;
+    Customer create(CustomerRequest customer);
 
-    @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    Customer findById(Long customerId);
 
-    public Page<Customer> getUsers(Pageable page) {
-        return customerRepository.findAll(page);
-    }
+    Customer update(Long id, CustomerRequest customer);
 
-    public Optional<Customer> getCustomer(Long id) {
-        return customerRepository.findById(id);
-    }
+    void deleteById(Long customerId);
 }

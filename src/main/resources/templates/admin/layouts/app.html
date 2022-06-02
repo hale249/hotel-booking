@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
 
     <meta charset="utf-8">
@@ -56,6 +58,30 @@
                 <span>Khách hàng</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/booking}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Đặt phòng</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/service}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Dịch vụ</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/room}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Phòng</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/blog}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Tin tức</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -99,12 +125,12 @@
                 </button>
 
                 <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="name"></span>
                             <img class="img-profile rounded-circle"
                                  th:src="@{/plugins/admin/img/undraw_profile.svg}">
                         </a>
