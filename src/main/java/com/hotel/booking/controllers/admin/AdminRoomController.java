@@ -1,6 +1,7 @@
 package com.hotel.booking.controllers.admin;
 
 import com.hotel.booking.constants.JsonStructure;
+import com.hotel.booking.entities.Room;
 import com.hotel.booking.entities.User;
 import com.hotel.booking.services.RoomService;
 import com.hotel.booking.services.impl.UserServiceImpl;
@@ -15,30 +16,30 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-//@Controller
-//@RequestMapping("admin/room")
+@Controller
+@RequestMapping("admin/rooms")
 public class AdminRoomController {
 
-//    @Autowired
-//    private RoomService roomService;
+    @Autowired
+    private RoomService roomService;
 
-//    @GetMapping(value = "")
-//    public String index(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current,
-//                        @RequestParam(value = "pageSize", required = false, defaultValue = JsonStructure.Pagination.PAGE_SIZE) int pageSize,
-//                        @RequestParam(value = "searchText", required = false, defaultValue = "") String searchText, Model model) {
-//
-//        model.addAttribute("searchText", searchText);
-//        model.addAttribute("rooms", roomService.listRooms(current, pageSize, searchText));
-//
-//        return "admin/elements/room/index";
-//    }
-//
-//    @GetMapping(value = "/create")
-//    public String create(Model model) {
-//        model.addAttribute("user", new User());
-//        return "admin/elements/users/create";
-//    }
-//
+    @GetMapping(value = "")
+    public String index(@RequestParam(value = "current", required = false, defaultValue = JsonStructure.Pagination.CURRENT) int current,
+                        @RequestParam(value = "pageSize", required = false, defaultValue = JsonStructure.Pagination.PAGE_SIZE) int pageSize,
+                        @RequestParam(value = "searchText", required = false, defaultValue = "") String searchText, Model model) {
+
+        model.addAttribute("searchText", searchText);
+        model.addAttribute("rooms", roomService.listRooms(current, pageSize, searchText));
+
+        return "admin/elements/room/index";
+    }
+
+    @GetMapping(value = "/create")
+    public String create(Model model) {
+        model.addAttribute("room", new Room());
+        return "admin/elements/room/create";
+    }
+
 //    @PostMapping(value = "/create")
 //    public String store(@Valid @ModelAttribute("user") CreateUserRequest user, BindingResult result,
 //                             RedirectAttributes redirectAttributes) {

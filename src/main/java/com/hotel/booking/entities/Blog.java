@@ -5,7 +5,6 @@ import lombok.*;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -15,11 +14,13 @@ import java.util.Set;
 @Entity
 @Where(clause="deleted=0")
 @Table(name = DBConstants.Documents.BLOG)
-public class Blog extends BaseEntity implements Serializable {
-    @Column(name = "title", length = 255)
+public class Blog extends BaseEntity{
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "sub_title", length = 255)
+    @Column(name = "sub_title")
     private String subTitle;
 
     @Column(columnDefinition = "text")

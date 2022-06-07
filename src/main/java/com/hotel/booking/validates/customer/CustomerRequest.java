@@ -26,6 +26,4 @@ public class CustomerRequest {
     private Double totalPrice;
 
     private String address;
-
-    private String avatar;
 }

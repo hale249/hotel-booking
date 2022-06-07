@@ -16,6 +16,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("admin/customers")
 public class AdminCustomerController {
+
     @Autowired
     protected CustomerService customerService;
 
@@ -65,7 +66,7 @@ public class AdminCustomerController {
     }
 
     @PostMapping("{id}")
-    public String update(@PathVariable("id") long id, @Valid @ModelAttribute("user") CustomerRequest request,
+    public String update(@PathVariable("id") long id, @Valid @ModelAttribute("customer") CustomerRequest request,
                          BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");

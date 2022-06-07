@@ -6,6 +6,10 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <title>Tạo mới bài viết</title>
+
+    <th:block layout:fragment="css">
+        <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    </th:block>
 </head>
 <body>
 <div layout:fragment="content">
@@ -43,10 +47,19 @@
                     <label class="col-md-2 form-control-label" for="image">Tải hình ảnh</label>
 
                     <div class="col-md-10">
-                        <input type="file" class="form-control" th:classappend="${#fields.hasErrors('image')} ? 'was-validated' : ''" id="image" th:field="*{image}" placeholder="Tải hình ảnh lên...">
-                        <p class="text-danger" th:if="${#fields.hasErrors('image')}"
-                           th:errors="*{image}"></p>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/png, image/jpeg" placeholder="Tải hình ảnh lên...">
+<!--                        <p class="text-danger" th:if="${#fields.hasErrors('image')}"-->
+<!--                           th:errors="*{image}"></p>-->
+<!--                        th:classappend="${#fields.hasErrors('image')} ? 'was-validated' : ''"-->
 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="status">Trạng thái</label>
+
+                    <div class="col-md-10">
+                        <input type="checkbox" th:field="*{status}" id="status" data-toggle="toggle" data-offstyle="outline-secondary"/>
                     </div>
                 </div>
 
@@ -54,7 +67,7 @@
                     <label class="col-md-2 form-control-label" for="description">Mô tả</label>
 
                     <div class="col-md-10">
-                        <textarea class="form-control" th:classappend="${#fields.hasErrors('description')} ? 'was-validated' : ''" th:field="*{description}" id="description" rows="3" placeholder="Nhập nội dung..."></textarea>
+                        <textarea class="form-control" name="description" th:classappend="${#fields.hasErrors('description')} ? 'was-validated' : ''" th:field="*{description}" id="description" rows="3" placeholder="Nhập nội dung..."></textarea>
                         <p class="text-danger" th:if="${#fields.hasErrors('description')}"
                            th:errors="*{description}"></p>
 
@@ -77,5 +90,12 @@
         </form>
     </div>
 </div>
+
+<th:block layout:fragment="js">
+<!--    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>-->
+    <script>
+        CKEDITOR.replace( 'description' );
+    </script>
+</th:block>
 </body>
 </html>

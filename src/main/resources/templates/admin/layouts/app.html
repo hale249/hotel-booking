@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link th:href="@{/plugins/admin/css/sb-admin-2.min.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <th:block layout:fragment="css" />
 
     <style>
@@ -65,13 +66,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/service}">
+            <a class="nav-link" th:href="@{/admin/services}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Dịch vụ</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/room}">
+            <a class="nav-link" th:href="@{/admin/rooms}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Phòng</span></a>
         </li>
@@ -238,6 +239,7 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/plugins/admin/js/demo/chart-area-demo.js}"></script>
 <script th:src="@{/plugins/admin/js/demo/chart-pie-demo.js}"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <th:block layout:fragment="js" />
 </body>

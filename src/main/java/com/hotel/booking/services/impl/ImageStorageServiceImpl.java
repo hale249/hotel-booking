@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 @Service
 public class ImageStorageServiceImpl implements StorageService {
-    private final Path storageFolder = Paths.get("uploads");
+    private final Path storageFolder = Paths.get("src/main/resources/static/uploads");
     //constructor
     public ImageStorageServiceImpl() {
         try {
@@ -40,7 +40,6 @@ public class ImageStorageServiceImpl implements StorageService {
     @Override
     public String storeFile(MultipartFile file) {
         try {
-            System.out.println("haha");
             if (file.isEmpty()) {
                 throw new RuntimeException("Failed to store empty file.");
             }

@@ -13,7 +13,14 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = DBConstants.Documents.ROLE)
-public class Role extends BaseEntity {
+@Table(name = DBConstants.Documents.ROOM_IMAGES)
+public class RoomImages extends BaseEntity{
     private String name;
+
+    @Column(name = "file_path", columnDefinition = "text")
+    private String filePath;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 }

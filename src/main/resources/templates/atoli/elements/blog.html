@@ -6,7 +6,7 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ</title>
+    <title>Tin tức</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -15,12 +15,12 @@
             <div class="inner-title">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a th:href="@{/}">Trang chủ</a>
                     </li>
                     <li><i class="bx bx-chevron-right"></i></li>
-                    <li>Blog Style One</li>
+                    <li>Tin tức</li>
                 </ul>
-                <h3>Blog Style One</h3>
+                <h3>Tin tức</h3>
             </div>
         </div>
     </div>

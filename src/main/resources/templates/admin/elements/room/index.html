@@ -5,7 +5,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
-    <title>Quản lý bài viết hệ thống</title>
+    <title>Quản lý phòng</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -14,16 +14,16 @@
             <div class="row">
                 <div class="col-8">
                     <h4 class="card-title mb-0">
-                        Quản lý bài viết
+                        Quản lý phòng
                     </h4>
                 </div>
                 <div class="col-4 text-right">
-                    <a th:href="@{/admin/blog/create}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tạo
+                    <a th:href="@{/admin/rooms/create}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tạo
                         mới</a>
                 </div>
             </div>
 
-            <form th:action="@{/admin/blog}" method="GET" class="form-inline mt-2">
+            <form th:action="@{/admin/rooms}" method="GET" class="form-inline mt-2">
                 <div class="form-group">
                     <input type="text" name="searchText" id="searchText" class="form-control" th:value="${searchText}" placeholder="Nhập tên tìm kiếm...">
                 </div>
@@ -38,25 +38,25 @@
                         <tr>
                             <td><strong>STT</strong></td>
                             <td><strong>Hình ảnh</strong></td>
-                            <td><strong>Tiêu đề</strong></td>
-                            <td><strong>Tiêu đề phụ</strong></td>
-                            <td><strong>Ngày tạo</strong></td>
+                            <td><strong>Tên</strong></td>
+                            <td><strong>Loại phòng</strong></td>
+                            <td><strong>Giá tiền</strong></td>
+                            <td><strong>Tạo lúc</strong></td>
                             <td><strong>Hành động</strong></td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="blog : ${blogs.page}">
-                            <td th:text="${blog.id}"></td>
-                            <td>
-                                <img th:src="${blog.image}"/>
-                            </td>
-                            <td th:text="${blog.title}"></td>
-                            <td th:text="${blog.subTitle}"></td>
-                            <td th:text="${#dates.format(blog.createdAt, 'dd-MM-yyyy')}"></td>
+                        <tr th:each="room : ${rooms.page}">
+                            <td th:text="${room.id}"></td>
+                            <td th:text="${room.image}"></td>
+                            <td th:text="${room.name}"></td>
+                            <td th:text="${room.unit}"></td>
+                            <td th:text="${room.price}"></td>
+                            <td th:text="${#dates.format(room.createdAt, 'dd-MM-yyyy')}"></td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Hành động">
-                                    <a th:href="@{/admin/blog/{id}(id=${blog.id})}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                    <a th:href="@{/admin/blog/delete/{id}(id=${blog.id})}"
+                                    <a th:href="@{/admin/rooms/{id}(id=${room.id})}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a th:href="@{/admin/rooms/delete/{id}(id=${room.id})}"
                                        class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </a>
@@ -69,16 +69,16 @@
 
                 <div class="d-flex justify-content-end">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination text-right" th:if="${blogs.page.totalPages > 0}">
+                        <ul class="pagination text-right" th:if="${rooms.page.totalPages > 0}">
                             <li class="page-item"
-                                th:classappend="${!blogs.paging.isPrevEnabled()? 'disabled' : ''}">
+                                th:classappend="${!rooms.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'admin/users/?current=' + ${blogs.paging.current - 1}}"
+                                   th:href="@{'admin/users/?current=' + ${rooms.paging.current - 1}}"
                                    tabindex="-1">Trước</a>
                             </li>
-                            <th:block th:each="item : ${blogs.paging.getItems()}">
+                            <th:block th:each="item : ${rooms.paging.getItems()}">
                                 <li class="page-item"
-                                    th:classappend="${item.index == blogs.paging.current? 'active' : ''}"
+                                    th:classappend="${item.index == rooms.paging.current? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}"><a
                                         class="page-link" th:href="@{'admin/users/?current=' + ${item.index}}"
                                         th:text="${item.index}"></a></li>
@@ -87,9 +87,9 @@
                                         class="page-link" href="#">...</a></li>
                             </th:block>
                             <li class="page-item"
-                                th:classappend="${!blogs.paging.isNextEnabled()? 'disabled' : ''}">
+                                th:classappend="${!rooms.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'admin/users/?current=' + ${blogs.paging.current + 1}}">Tiếp</a>
+                                   th:href="@{'admin/users/?current=' + ${rooms.paging.current + 1}}">Tiếp</a>
                             </li>
                         </ul>
                     </nav>

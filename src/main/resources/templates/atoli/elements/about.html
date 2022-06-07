@@ -15,12 +15,12 @@
             <div class="inner-title">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a th:href="@{/}">Trang chủ</a>
                     </li>
                     <li><i class="bx bx-chevron-right"></i></li>
-                    <li>About Us</li>
+                    <li>Giới thiệu</li>
                 </ul>
-                <h3>About Us</h3>
+                <h3>Giới thiệu</h3>
             </div>
         </div>
     </div>
@@ -44,62 +44,6 @@
                                 at sem quis pretium. Aenean sit amet neque ut dolor lacinia
                                 rutrum. In vulputate pellentesque turpis et porta.
                             </p>
-                        </div>
-                        <div class="about-form">
-                            <form>
-                                <div class="row align-items-center">
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="form-group">
-                                            <label>Check in</label>
-                                            <div class="input-group">
-                                                <input
-                                                        id="datetimepicker"
-                                                        type="text"
-                                                        class="form-control"
-                                                        placeholder="09/29/2020"
-                                                />
-                                                <span class="input-group-addon"></span>
-                                            </div>
-                                            <i class="bx bxs-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="form-group">
-                                            <label>Persons</label>
-                                            <select class="form-control">
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                                <option>04</option>
-                                                <option>05</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <div class="form-group">
-                                            <label>Check Out</label>
-                                            <div class="input-group">
-                                                <input
-                                                        id="datetimepicker-check"
-                                                        type="text"
-                                                        class="form-control"
-                                                        placeholder="09/29/2020"
-                                                />
-                                                <span class="input-group-addon"></span>
-                                            </div>
-                                            <i class="bx bxs-calendar"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <button
-                                                type="submit"
-                                                class="default-btn btn-bg-three border-radius-5"
-                                        >
-                                            Check Availability
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -358,10 +302,7 @@
                     </p>
                     <ul>
                         <li>
-                            <img
-                                    th:src="@{/plugins/atoli/assets/img/testimonials/testimonials-img1.jpg}"
-                                    alt="Images"
-                            />
+                            <img th:src="@{/plugins/atoli/assets/img/testimonials/testimonials-img1.jpg}" alt="Images"/>
                             <h3>Mary Marden</h3>
                             <span>New York City</span>
                         </li>

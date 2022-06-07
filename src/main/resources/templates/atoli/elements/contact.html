@@ -6,7 +6,7 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ</title>
+    <title>Liên hệ</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -16,12 +16,12 @@
             <div class="inner-title">
                 <ul>
                     <li>
-                        <a href="index.html">Home</a>
+                        <a th:href="@{/}">Trang chủ</a>
                     </li>
                     <li><i class="bx bx-chevron-right"></i></li>
-                    <li>Contact</li>
+                    <li>Liên hệ</li>
                 </ul>
-                <h3>Contact</h3>
+                <h3>Liên hệ</h3>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@
                 <div class="col-lg-6">
                     <div class="contact-content">
                         <div class="section-title">
-                            <h2>Let's Start to Give Us a Message and Contact With Us</h2>
+                            <h2>Hãy bắt đầu cung cấp cho chúng tôi một tin nhắn và liên hệ với chúng tôi</h2>
                         </div>
                         <div class="contact-img">
-                            <img th:src="@{/plugins/atoli/assets/img/contact/contact-img1.jpg}" alt="Images" />
+                            <img th:src="@{/plugins/atoli/assets/img/contact/contact-img1.jpg}" alt="Images"/>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                                                 id="name"
                                                 class="form-control"
                                                 required
-                                                data-error="Please enter your name"
+                                                data-error="Vui lòng nhập tên"
                                                 placeholder="Name"
                                         />
                                         <div class="help-block with-errors"></div>
@@ -65,7 +65,7 @@
                                                 id="email"
                                                 class="form-control"
                                                 required
-                                                data-error="Please enter your email"
+                                                data-error="Vui lòng nhập email"
                                                 placeholder="Email"
                                         />
                                         <div class="help-block with-errors"></div>
@@ -78,7 +78,7 @@
                                                 name="phone_number"
                                                 id="phone_number"
                                                 required
-                                                data-error="Please enter your number"
+                                                data-error="Vui lòng nhập số điện thoại"
                                                 class="form-control"
                                                 placeholder="Phone"
                                         />
@@ -93,8 +93,8 @@
                                                 id="msg_subject"
                                                 class="form-control"
                                                 required
-                                                data-error="Please enter your subject"
-                                                placeholder="Your Subject"
+                                                data-error="Vui lòng nhâp tên"
+                                                placeholder="Nhập tên"
                                         />
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -116,17 +116,17 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group checkbox-option">
-                                        <input type="checkbox" id="chb2" />
+                                        <input type="checkbox" id="chb2"/>
                                         <p>
-                                            Accept
-                                            <a href="terms-condition.html">Terms & Conditions</a>
-                                            And <a href="privacy-policy.html">Privacy Policy.</a>
+                                            Chấp thuận
+                                            <a th:href="@{/}">Điều khoản & điều kiện</a>
+                                            và <a th:href="@{/}">Chính sách bảo mật.</a>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <button type="submit" class="default-btn btn-bg-three">
-                                        Send Message
+                                        Gửi tin nhắn
                                     </button>
                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                     <div class="clearfix"></div>
@@ -145,10 +145,10 @@
                 <div class="col-lg-6">
                     <div class="contact-another-content">
                         <div class="section-title">
-                            <h2>Contacts Info</h2>
+                            <h2>Thông tin liên hệ</h2>
                             <p>
-                                We are one of the best agency and we can easily make a
-                                contract us anytime on the below details.
+                                Chúng tôi là một trong những đại lý tốt nhất và chúng tôi có thể dễ dàng tạo ký hợp đồng
+                                với chúng tôi bất cứ lúc nào về các chi tiết dưới đây.
                             </p>
                         </div>
                         <div class="contact-item">
@@ -156,46 +156,7 @@
                                 <li>
                                     <i class="bx bx-home-alt"></i>
                                     <div class="content">
-                                        <span>123 Virgil A Stanton, Virginia, USA</span>
-                                        <span>163 Virgil A Stanton, Virginia, USA</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="bx bx-phone-call"></i>
-                                    <div class="content">
-                      <span
-                      ><a href="tel:+1(123)4567890"
-                      >+1 (123) 456 7890</a
-                      ></span
-                      >
-                                        <span
-                                        ><a href="tel:+1(123)4567896"
-                                        >+1 (123) 456 7896</a
-                                        ></span
-                                        >
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="bx bx-envelope"></i>
-                                    <div class="content">
-                      <span
-                      ><a href="info@atoli.com"
-                      ><span
-                              class="__cf_email__"
-                              data-cfemail="e0898e868fa081948f8c89ce838f8d"
-                      >[email&#160;protected]</span
-                      ></a
-                      ></span
-                      >
-                                        <span
-                                        ><a href="hello@atoli.com"
-                                        ><span
-                                                class="__cf_email__"
-                                                data-cfemail="6d05080101022d0c19020104430e0200"
-                                        >[email&#160;protected]</span
-                                        ></a
-                                        ></span
-                                        >
+                                        <span>14 Cổ nhuế, Bắc Từ Liêm, Hà Nội</span>
                                     </div>
                                 </li>
                             </ul>
@@ -204,7 +165,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="contact-another-img">
-                        <img th:src="@{/plugins/atoli/assets/img/contact/contact-img2.jpg}" alt="Images" />
+                        <img th:src="@{/plugins/atoli/assets/img/contact/contact-img2.jpg}" alt="Images"/>
                     </div>
                 </div>
             </div>
@@ -213,9 +174,9 @@
 
     <div class="map-area">
         <div class="container-fluid m-0 p-0">
-            <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50194.82376159623!2d-79.09792989247224!3d38.159337740034566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b4a08eb8621697%3A0xe5d6e4710a09b66e!2zU3RhdW50b24sIOCmreCmvuCmsOCnjeCmnOCmv-CmqOCmv-Cmr-CmvOCmviAyNDQwMSwg4Kau4Ka-4Kaw4KeN4KaV4Ka_4KaoIOCmr-CngeCmleCnjeCmpOCmsOCmvuCmt-CnjeCmn-CnjeCmsA!5e0!3m2!1sbn!2sbd!4v1604126938221!5m2!1sbn!2sbd"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.3260961697774!2d105.78048631540393!3d21.05963408598165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab2aafbdd153%3A0xa40f610ab1c866ee!2zMTQgxJAuIEPhu5UgTmh14bq_LCBD4buVIE5odeG6vywgQuG6r2MgVOG7qyBMacOqbSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1654608958762!5m2!1svi!2s"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 

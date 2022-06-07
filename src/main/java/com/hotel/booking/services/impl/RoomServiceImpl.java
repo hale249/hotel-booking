@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class RoomServiceImpl implements RoomService {
     @Autowired
     private RoomRepository roomRepository;
@@ -19,9 +19,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Paged<Room> listRooms(int current, int pageSize, String searchText) {
         PageRequest request = PageRequest.of(current - 1, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-//        Page<Room> roomPage = roomRepository.listRooms(searchText, request);
-//        return new Paged<>(roomPage, Paging.of(roomPage.getTotalPages(), current, pageSize));
-        return null;
+        Page<Room> roomPage = roomRepository.listRooms(searchText, request);
+        return new Paged<>(roomPage, Paging.of(roomPage.getTotalPages(), current, pageSize));
     }
 
     @Override

@@ -13,7 +13,11 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = DBConstants.Documents.ROLE)
-public class Role extends BaseEntity {
+@Table(name = DBConstants.Documents.ROOM_TAGS)
+public class RoomTags extends BaseEntity{
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 }
