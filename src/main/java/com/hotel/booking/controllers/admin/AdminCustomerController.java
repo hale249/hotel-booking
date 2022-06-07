@@ -29,6 +29,12 @@ public class AdminCustomerController {
         return "admin/elements/customers/index";
     }
 
+    @GetMapping(value = "/create")
+    public String create(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "admin/elements/customers/create";
+    }
+
     @PostMapping(value = "/create")
     public String store(@Valid @ModelAttribute("customer") CustomerRequest customer, BindingResult result,
                         RedirectAttributes redirectAttributes) {
@@ -40,7 +46,7 @@ public class AdminCustomerController {
         Customer newCustomer = customerService.create(customer);
         if (newCustomer == null) {
             redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");
-            return "admin/elements/customers/edit";
+            return "admin/elements/customers/create";
         }
 
         redirectAttributes.addFlashAttribute("success", "Tạo khách hàng thành công");

@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +21,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Where(clause="deleted=0")
 @Table(name = DBConstants.Documents.CUSTOMERS)
-public class Customer extends BaseEntity{
+public class Customer {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "name", length = 128)
     private String name;
 
@@ -40,6 +50,16 @@ public class Customer extends BaseEntity{
 
     @Column(columnDefinition = "text")
     private String avatar;
+
+    @CreatedDate
+    @Column(name = "created_at", updatable = false)
+    @JsonIgnore
+    private Instant createdAt = Instant.now();
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    @JsonIgnore
+    private Instant updatedAt = Instant.now();
 
     @Column(name = "deleted", columnDefinition = "boolean default false")
     private boolean deleted = Boolean.FALSE;
