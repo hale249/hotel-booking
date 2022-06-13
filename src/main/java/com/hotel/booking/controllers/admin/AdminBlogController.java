@@ -3,7 +3,6 @@ package com.hotel.booking.controllers.admin;
 import com.hotel.booking.constants.JsonStructure;
 import com.hotel.booking.entities.Blog;
 import com.hotel.booking.services.BlogService;
-import com.hotel.booking.services.FilesStorageService;
 import com.hotel.booking.services.StorageService;
 import com.hotel.booking.validates.blog.BlogRequest;
 import com.hotel.booking.validates.blog.CreateBlogRequest;
@@ -43,38 +42,39 @@ public class AdminBlogController {
     }
 
     @PostMapping("/create")
-    public String store(@Valid @ModelAttribute("blog") CreateBlogRequest request,
-                        @RequestParam @NotEmpty(message = "File không được để trông") MultipartFile image,
-                        BindingResult result, RedirectAttributes redirectAttributes) {
+    public String store(@Valid @ModelAttribute("blog") CreateBlogRequest request, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
             return "admin/elements/blog/create";
         }
 
-      try {
-          String fileName = storageService.storeFile(image);
-          Blog newBlog = new Blog();
-          newBlog.setTitle(request.getTitle());
-          newBlog.setSubTitle(request.getSubTitle());
-          newBlog.setDescription(request.getDescription());
-          newBlog.setStatus(request.isStatus());
-          if (fileName != null) {
-              fileName = "uploads/" + fileName;
-          }
-          newBlog.setImage(fileName);
+        try {
+            Blog newBlog = new Blog();
+            newBlog.setTitle(request.getTitle());
+            newBlog.setSubTitle(request.getSubTitle());
+            newBlog.setDescription(request.getDescription());
+            newBlog.setStatus(request.isStatus());
 
-          Blog saveBlog = blogService.create(newBlog);
-          if (saveBlog == null) {
-              redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");
-              return "admin/elements/blog/create";
-          }
+            if (request.getImage() != null) {
+                String fileName = storageService.storeFile(request.getImage());
+                if (fileName != null) {
+                    fileName = "uploads/" + fileName;
+                }
+                newBlog.setImage(fileName);
+            }
 
-          redirectAttributes.addFlashAttribute("success", "Tạo người dùng thành công");
-          return "redirect:/admin/blog";
-      }catch (Exception e) {
-          redirectAttributes.addFlashAttribute("error", e.getMessage());
-          return "admin/elements/blog/create";
-      }
+            Blog saveBlog = blogService.create(newBlog);
+            if (saveBlog == null) {
+                redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");
+                return "admin/elements/blog/create";
+            }
+
+            redirectAttributes.addFlashAttribute("success", "Tạo bài viết thành công");
+            return "redirect:/admin/blog";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "admin/elements/blog/create";
+        }
     }
 
     @GetMapping("/{id}")
@@ -115,7 +115,7 @@ public class AdminBlogController {
         }
 
         blogService.deleteById(id);
-        redirectAttributes.addFlashAttribute("success", "Xóa người dùng thành công");
+        redirectAttributes.addFlashAttribute("success", "Xóa bài viết thành công");
         return "redirect:/admin/blog";
     }
 }

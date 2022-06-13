@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/app.html}"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
-    <title>Quản lý người dùng hệ thống</title>
+    <title>Quản lý dịch vụ hệ thống</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -14,16 +14,16 @@
             <div class="row">
                 <div class="col-8">
                     <h4 class="card-title mb-0">
-                        Quản lý người dùng
+                        Quản lý dịch vụ
                     </h4>
                 </div>
                 <div class="col-4 text-right">
-                    <a th:href="@{/admin/users/create}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tạo
+                    <a th:href="@{/admin/services/create}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tạo
                         mới</a>
                 </div>
             </div>
 
-            <form th:action="@{/admin/users}" method="GET" class="form-inline mt-2">
+            <form th:action="@{/admin/services}" method="GET" class="form-inline mt-2">
                 <div class="form-group">
                     <input type="text" name="searchText" id="searchText" class="form-control" th:value="${searchText}" placeholder="Nhập tên tìm kiếm...">
                 </div>
@@ -37,31 +37,29 @@
                         <thead>
                         <tr>
                             <td><strong>STT</strong></td>
+                            <td><strong>Hình ảnh</strong></td>
                             <td><strong>Tên</strong></td>
-                            <td><strong>Username</strong></td>
-                            <td><strong>Email</strong></td>
-                            <td><strong>Ngày sinh</strong></td>
+                            <td><strong>Tạo lúc</strong></td>
                             <td><strong>Trạng thái</strong></td>
                             <td><strong>Hành động</strong></td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="user : ${users.page}">
-                            <td th:text="${user.id}"></td>
-                            <td th:text="${user.name}"></td>
-                            <td th:text="${user.username}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${#dates.format(user.createdAt, 'dd-MM-yyyy')}"></td>
+                        <tr th:each="service : ${services.page}">
+                            <td th:text="${service.id}"></td>
+                            <td th:text="${service.image}"></td>
+                            <td th:text="${service.title}"></td>
+                            <td th:text="${#dates.format(service.createdAt, 'dd-MM-yyyy')}"></td>
                             <td>
-                                <span th:if="${user.active}" class="badge badge-success">
+                                <span th:if="${service.status}" class="badge badge-success">
                                         Hoạt động
                                 </span>
-                                <span th:unless="${user.active}" class="badge badge-success">Tạm khóa</span>
+                                <span th:unless="${service.status}" class="badge badge-success">Bản nháp</span>
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Hành động">
-                                    <a th:href="@{/admin/users/{id}(id=${user.id})}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                    <a th:href="@{/admin/users/delete/{id}(id=${user.id})}"
+                                    <a th:href="@{/admin/services/{id}(id=${service.id})}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a th:href="@{/admin/services/delete/{id}(id=${service.id})}"
                                        class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </a>
@@ -78,16 +76,16 @@
 
                     <div class="col text-right">
                         <nav aria-label="Page navigation example">
-                            <ul class="pagination text-right" th:if="${users.page.totalPages > 0}">
+                            <ul class="pagination text-right" th:if="${services.page.totalPages > 0}">
                                 <li class="page-item"
-                                    th:classappend="${!users.paging.isPrevEnabled()? 'disabled' : ''}">
+                                    th:classappend="${!services.paging.isPrevEnabled()? 'disabled' : ''}">
                                     <a class="page-link"
-                                       th:href="@{'admin/users/?current=' + ${users.paging.current - 1}}"
+                                       th:href="@{'admin/users/?current=' + ${services.paging.current - 1}}"
                                        tabindex="-1">Trước</a>
                                 </li>
-                                <th:block th:each="item : ${users.paging.getItems()}">
+                                <th:block th:each="item : ${services.paging.getItems()}">
                                     <li class="page-item"
-                                        th:classappend="${item.index == users.paging.current? 'active' : ''}"
+                                        th:classappend="${item.index == services.paging.current? 'active' : ''}"
                                         th:if="${item.pageItemType.name() == 'PAGE'}"><a
                                             class="page-link" th:href="@{'admin/users/?current=' + ${item.index}}"
                                             th:text="${item.index}"></a></li>
@@ -96,9 +94,9 @@
                                             class="page-link" href="#">...</a></li>
                                 </th:block>
                                 <li class="page-item"
-                                    th:classappend="${!users.paging.isNextEnabled()? 'disabled' : ''}">
+                                    th:classappend="${!services.paging.isNextEnabled()? 'disabled' : ''}">
                                     <a class="page-link"
-                                       th:href="@{'admin/users/?current=' + ${users.paging.current + 1}}">Tiếp</a>
+                                       th:href="@{'admin/services/?current=' + ${services.paging.current + 1}}">Tiếp</a>
                                 </li>
                             </ul>
                         </nav>

@@ -21,7 +21,7 @@ public class Room extends BaseEntity{
     private String name;
 
     @Column(columnDefinition = "text")
-        private String image;
+    private String image;
 
     private double price;
 

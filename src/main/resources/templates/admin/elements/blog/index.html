@@ -48,7 +48,7 @@
                         <tr th:each="blog : ${blogs.page}">
                             <td th:text="${blog.id}"></td>
                             <td>
-                                <img th:src="${blog.image}"/>
+                                <img th:src="${'/' + blog.image}" th:alt="${blog.title}" width="30" height="30"/>
                             </td>
                             <td th:text="${blog.title}"></td>
                             <td th:text="${blog.subTitle}"></td>
@@ -73,14 +73,14 @@
                             <li class="page-item"
                                 th:classappend="${!blogs.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'admin/users/?current=' + ${blogs.paging.current - 1}}"
+                                   th:href="@{'?current=' + ${blogs.paging.current - 1}}"
                                    tabindex="-1">Trước</a>
                             </li>
                             <th:block th:each="item : ${blogs.paging.getItems()}">
                                 <li class="page-item"
                                     th:classappend="${item.index == blogs.paging.current? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}"><a
-                                        class="page-link" th:href="@{'admin/users/?current=' + ${item.index}}"
+                                        class="page-link" th:href="@{'?current=' + ${item.index}}"
                                         th:text="${item.index}"></a></li>
                                 <li class="page-item disabled"
                                     th:if="${item.pageItemType.name() == 'DOTS'}"><a
@@ -89,7 +89,7 @@
                             <li class="page-item"
                                 th:classappend="${!blogs.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'admin/users/?current=' + ${blogs.paging.current + 1}}">Tiếp</a>
+                                   th:href="@{'?current=' + ${blogs.paging.current + 1}}">Tiếp</a>
                             </li>
                         </ul>
                     </nav>

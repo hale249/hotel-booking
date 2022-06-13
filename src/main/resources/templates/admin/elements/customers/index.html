@@ -89,7 +89,7 @@
                             <li class="page-item"
                                 th:classappend="${!customers.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'admin/users/?current=' + ${customers.paging.current + 1}}">Tiếp</a>
+                                   th:href="@{'admin/customers/?current=' + ${customers.paging.current + 1}}">Tiếp</a>
                             </li>
                         </ul>
                     </nav>
