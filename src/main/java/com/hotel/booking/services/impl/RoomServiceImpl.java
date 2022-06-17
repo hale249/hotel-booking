@@ -29,8 +29,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room findById(Long userId) {
-        return roomRepository.getById(userId);
+    public Room findById(Long roleId) {
+        return roomRepository.getById(roleId);
     }
 
     @Override

@@ -67,10 +67,10 @@
 
 <!--                    </div>-->
 
-                    <label class="col-md-2 form-control-label" for="descriptionBlog">Tiêu đề</label>
+                    <label class="col-md-2 form-control-label" for="descriptionBlog">Nội dung</label>
 
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="descriptionBlog" th:classappend="${#fields.hasErrors('description')} ? 'was-validated' : ''" th:field="*{description}" placeholder="Nội dung mô tả...">
+                        <textarea class="form-control" id="descriptionBlog" th:classappend="${#fields.hasErrors('description')} ? 'was-validated' : ''" th:field="*{description}" placeholder="Nội dung mô tả..."> </textarea>
                         <p class="text-danger" th:if="${#fields.hasErrors('description')}"
                            th:errors="*{description}"></p>
                     </div>
@@ -94,10 +94,10 @@
 </div>
 
 <th:block layout:fragment="js">
-<!--    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>-->
-<!--    <script>-->
-<!--        CKEDITOR.replace('descriptionBlog');-->
-<!--    </script>-->
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'description' );
+    </script>
 </th:block>
 </body>
 </html>

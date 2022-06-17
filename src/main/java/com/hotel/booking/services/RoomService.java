@@ -6,7 +6,7 @@ import com.hotel.booking.utils.pagination.Paged;
 public interface RoomService {
     Paged<Room> listRooms(int current, int pageSize, String searchText);
 
-    Room create(Room user);
+    Room create(Room room);
 
     Room findById(Long id);
 

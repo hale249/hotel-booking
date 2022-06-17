@@ -5,6 +5,7 @@ import com.hotel.booking.entities.Room;
 import com.hotel.booking.entities.User;
 import com.hotel.booking.services.RoomService;
 import com.hotel.booking.services.impl.UserServiceImpl;
+import com.hotel.booking.validates.room.RoomRequest;
 import com.hotel.booking.validates.user.CreateUserRequest;
 import com.hotel.booking.validates.user.UpdateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,24 +41,24 @@ public class AdminRoomController {
         return "admin/elements/room/create";
     }
 
-//    @PostMapping(value = "/create")
-//    public String store(@Valid @ModelAttribute("user") CreateUserRequest user, BindingResult result,
-//                             RedirectAttributes redirectAttributes) {
-//        if (result.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
-//            return "admin/elements/users/create";
-//        }
-//
-//        User newUser = roomService.create(user);
-//        if (newUser == null) {
+    @PostMapping(value = "/create")
+    public String store(@Valid @ModelAttribute("room") RoomRequest request, BindingResult result,
+                        RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("error", "Dữ liệu không hợp lệ");
+            return "admin/elements/room/create";
+        }
+
+//        Room newRoom = roomService.create(request);
+//        if (newRoom == null) {
 //            redirectAttributes.addFlashAttribute("error", "Có lỗi xảy ra");
 //            return "admin/elements/users/edit";
 //        }
-//
-//        redirectAttributes.addFlashAttribute("success", "Tạo người dùng thành công");
-//
-//        return "redirect:/admin/users";
-//    }
+
+        redirectAttributes.addFlashAttribute("success", "Tạo người dùng thành công");
+
+        return "redirect:/admin/users";
+    }
 //
 //    @GetMapping("{id}")
 //    public String edit(@PathVariable("id") long id, Model model) {
